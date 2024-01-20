@@ -63,8 +63,10 @@ def delete_data():
                                       "Введите число: ")
 
                 if delete_option == '1':
+                    # Пропустить запись, чтобы не записывать ее в файл
                     continue
                 elif delete_option == '2':
+                    # Удалить определенные данные
                     print(f"Какие данные удалить для {name_to_delete}?\n"
                           "1 - Имя\n"
                           "2 - Фамилия\n"
@@ -77,13 +79,13 @@ def delete_data():
                     elif data_to_delete == '2':
                         line = line.replace(name_to_delete, '')
                     elif data_to_delete == '3':
-                        line = line.replace(name_to_delete, '')
+                        line = line.replace(line.split('\n')[2], '')
                     elif data_to_delete == '4':
-                        line = line.replace(name_to_delete, '')
+                        line = line.replace(line.split('\n')[3], '')
                     else:
                         print("Некорректный ввод.")
 
-                f1.write(line)
+            f1.write(line)
 
     with open('data_second_variant.csv', 'r+', encoding='utf-8') as f2:
         lines = f2.readlines()
@@ -98,8 +100,10 @@ def delete_data():
                                       "Введите число: ")
 
                 if delete_option == '1':
+                    # Пропустить запись, чтобы не записывать ее в файл
                     continue
                 elif delete_option == '2':
+                    # Удалить определенные данные
                     print(f"Какие данные удалить для {name_to_delete}?\n"
                           "1 - Имя\n"
                           "2 - Фамилия\n"
@@ -112,13 +116,13 @@ def delete_data():
                     elif data_to_delete == '2':
                         line = line.replace(name_to_delete, '')
                     elif data_to_delete == '3':
-                        line = line.replace(name_to_delete, '')
+                        line = line.replace(line.split(';')[2], '')
                     elif data_to_delete == '4':
-                        line = line.replace(name_to_delete, '')
+                        line = line.replace(line.split(';')[3], '')
                     else:
                         print("Некорректный ввод.")
 
-                f2.write(line)
+            f2.write(line)
 
     if not found:
         print("Такого контакта не существует!")
@@ -199,3 +203,49 @@ def modify_data():
         print("Такого контакта не существует!")
     else:
         print(f"Данные для {name_to_modify} изменены успешно.")
+
+def update_data():
+    name_to_update = input("Введите имя или фамилию для обновления/дополнения данных: ")
+
+    found = False
+
+    with open('data_first_variant.csv', 'r+', encoding='utf-8') as f1:
+        lines = f1.readlines()
+        f1.seek(0)
+        f1.truncate()
+        for line in lines:
+            if name_to_update in line:
+                found = True
+                print("Текущая запись:")
+                print(line)
+
+                new_name = input("Введите новое имя: ")
+                new_surname = input("Введите новую фамилию: ")
+                new_phone = input("Введите новый номер телефона: ")
+                new_address = input("Введите новый адрес: ")
+                line = f"{new_name}\n{new_surname}\n{new_phone}\n{new_address}\n"
+
+            f1.write(line)
+
+    with open('data_second_variant.csv', 'r+', encoding='utf-8') as f2:
+        lines = f2.readlines()
+        f2.seek(0)
+        f2.truncate()
+        for line in lines:
+            if name_to_update in line:
+                found = True
+                print("Текущая запись:")
+                print(line)
+
+                new_name = input("Введите новое имя: ")
+                new_surname = input("Введите новую фамилию: ")
+                new_phone = input("Введите новый номер телефона: ")
+                new_address = input("Введите новый адрес: ")
+                line = f"{new_name};{new_surname};{new_phone};{new_address}\n"
+
+            f2.write(line)
+
+    if not found:
+        print("Такого контакта не существует!")
+    else:
+        print(f"Данные для {name_to_update} обновлены/дополнены успешно.")
