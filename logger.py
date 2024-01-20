@@ -73,7 +73,7 @@ def delete_data():
                     data_to_delete = input("Введите число: ")
 
                     if data_to_delete == '1':
-                        line = line.replace(name_to_delete, '')
+                        continue
                     elif data_to_delete == '2':
                         line = line.replace(name_to_delete, '')
                     elif data_to_delete == '3':
@@ -108,7 +108,7 @@ def delete_data():
                     data_to_delete = input("Введите число: ")
 
                     if data_to_delete == '1':
-                        line = line.replace(name_to_delete, '')
+                        continue
                     elif data_to_delete == '2':
                         line = line.replace(name_to_delete, '')
                     elif data_to_delete == '3':
