@@ -8,4 +8,8 @@ def interface():
         print("Неправильный ввод")
         command = int(input('Введите число '))
 
-interface()        
+    if command == 1:
+        input_data()
+    elif command == 2:
+        print_data()
+                
