@@ -1,5 +1,8 @@
 def input_data():
-    pass
+    name = name_data()
+    surname = surname_data()
+    phone = phone_data()
+    address = address_data()
 
 
 def print_data():
